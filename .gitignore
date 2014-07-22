@@ -1,3 +1,6 @@
+cucumbererl
+.rebar
+ebin
 .eunit
 deps
 *.o
