@@ -3,4 +3,4 @@
 -include_lib("eunit/include/eunit.hrl").
 
 empty_test() ->
-    ?assert((1+1) =:= 2).
+  ?assert((1+1) =:= 2).
