@@ -15,7 +15,9 @@ scan([Line|Lines], TokenLine) ->
   [tokenize(Line, TokenLine)|scan(Lines, TokenLine+1)].
 
 tokenize(Line, TokenLine) ->
-  {ok,MP} = re:compile("\s*(?<A>Feature:|Scenario:)\s?\s*(?<B>.+)?\s*|\s*(?<A>Given|When|Then|And|But)\s+(?<B>.+)\s*", [dupnames]),
+  RegEx = "\s*(?<A>Feature:|Scenario:)\s?\s*(?<B>.+)?\s*|"
+          "\s*(?<A>Given|When|Then|And|But)\s+(?<B>.+)\s*",
+  {ok,MP} = re:compile(RegEx, [dupnames]),
   case re:run(Line, MP, [{capture, all_names, list}]) of
     {match, ["Feature:", Description]} ->
       {feature_header,TokenLine, Description};
